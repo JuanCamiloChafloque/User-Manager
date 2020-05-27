@@ -21,6 +21,10 @@
                 echo "Error accediendo a la base de datos";
             }
 
+            $_SESSION['userName'] = $_POST['nombre'];
+            $_SESSION['userPassword'] = $_POST['contrasena'];
+            $_SESSION['userCedula'] = $_POST['cedula'];
+
             $cedula = $_POST['cedula'];
             $nombre = $_POST['nombre'];
             $password = $_POST['contrasena'];
@@ -51,6 +55,9 @@
                     }
                     $sql = "INSERT INTO Usuarios (Cedula, NombreUsuario, Contrasena, Rol) VALUES (\"$cedula\", \"$nombre\", \"$hash\", \"$rol\")";
                     if(mysqli_query($con, $sql)){
+                        $_SESSION['userName'] = '';
+                        $_SESSION['userPassword'] = '';
+                        $_SESSION['userCedula'] = '';
                         echo "Usuario creado exitosamente";
                     }
                 }

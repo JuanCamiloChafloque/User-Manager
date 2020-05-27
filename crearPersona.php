@@ -21,6 +21,12 @@
                 echo "Error accediendo a la base de datos";
             }
 
+            $_SESSION['cedula'] = $_POST['cedula'];
+            $_SESSION['nombre'] = $_POST['nombre'];
+            $_SESSION['apellido'] = $_POST['apellido'];
+            $_SESSION['correo'] = $_POST['correo'];
+            $_SESSION['edad'] = $_POST['edad'];
+
             $cedula = $_POST['cedula'];
             $nombre = $_POST['nombre'];
             $apellido = $_POST['apellido'];
@@ -33,11 +39,21 @@
             if($exists > 0){
                 $sql = "UPDATE Personas SET Nombre = \"$nombre\", Apellido = \"$apellido\", Correo = \"$correo\", Edad = \"$edad\" WHERE Cedula = \"$cedula\"";
                 if(mysqli_query($con, $sql)){
+                    $_SESSION['cedula'] = '';
+                    $_SESSION['nombre'] = '';
+                    $_SESSION['apellido'] = '';
+                    $_SESSION['correo'] = '';
+                    $_SESSION['edad'] = '';
                     echo "Persona actualizada exitosamente";
                 }
             } else {
                 $sql = "INSERT INTO Personas (Cedula, Nombre, Apellido, Correo, Edad) VALUES (\"$cedula\", \"$nombre\", \"$apellido\", \"$correo\", \"$edad\")";
                 if(mysqli_query($con, $sql)){
+                    $_SESSION['cedula'] = '';
+                    $_SESSION['nombre'] = '';
+                    $_SESSION['apellido'] = '';
+                    $_SESSION['correo'] = '';
+                    $_SESSION['edad'] = '';
                     echo "Persona creada exitosamente";
                 }
             }

@@ -20,6 +20,10 @@
             if(mysqli_connect_errno()){
                 $str = "Error en la conexión: " . mysqli_connect_errno();
             }
+
+            $_SESSION['user'] = $_POST['usuario'];
+            $_SESSION['password'] = $_POST['password'];
+
             $user = $_POST['usuario'];
             $password = $_POST['password'];
 
@@ -33,6 +37,10 @@
                 $hash = $fila['Contrasena'];
                 $cedula = $fila['Cedula'];
                 if(hash_equals($hash, crypt($password, $hash))) {
+
+                    $_SESSION['user'] = '';
+                    $_SESSION['password'] = '';
+
                     if($rol == 'usuario'){
 
                         echo "<h3>Mi perfil: $user</h3>";

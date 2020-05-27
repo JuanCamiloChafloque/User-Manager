@@ -20,9 +20,9 @@
             <h3>Ingrese sus datos</h3>
             <form action="usuarioLogin.php" method="post">
                 <label>Usuario:</label>
-                <input type="text" placeholder="Ingrese su nombre de usuario..." name="usuario"><br>
+                <input type="text" placeholder="Ingrese su nombre de usuario..." name="usuario" value="<?php if (isset($_SESSION['user'])){ echo $_SESSION['user']; } ?>"><br>
                 <label>Contraseña:</label>
-                <input type="password" placeholder="Ingrese su contraseña..." name="password"><br>
+                <input type="password" placeholder="Ingrese su contraseña..." name="password" value="<?php if (isset($_SESSION['password'])){ echo $_SESSION['password']; } ?>"><br>
                 <input type="submit" value="Ingresar" name="Ingresar">
             </form>        
         </div>
